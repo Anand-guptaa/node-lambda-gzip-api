@@ -1,0 +1,26 @@
+service: node-lambda-gzip-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  apiResponse:
+    handler: apiHandler.apiResponse
+    timeout: 30
+    events:
+      - http:
+          path: api
+          method: get
+          cors: true
+  
+  gzipResponse:
+    handler: apiHandler.gzipAPIResponse
+    timeout: 30
+    events:
+      - http:
+          path: gzip
+          method: get
+          cors: true
